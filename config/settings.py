@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+from shutil import which
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = []
 
 DJANGO_APPS = [
+    "unfold",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -52,9 +55,18 @@ THIRD_PARTY_APPS = [
 
 OWNER_APPS = [
     "core",
+    "theme",
 ]
 
 INSTALLED_APPS += DJANGO_APPS + THIRD_PARTY_APPS + OWNER_APPS
+
+TAILWIND_APP_NAME = 'theme'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+NPM_BIN_PATH = which("npm") or which("npm.cmd")
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
